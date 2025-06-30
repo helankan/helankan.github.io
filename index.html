@@ -19,8 +19,6 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: url('ronaldo.jpg') no-repeat center center fixed;
-      background-size: cover;
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -28,6 +26,20 @@
       color: #ffffff;
       position: relative;
       overflow: hidden;
+      background: #000;
+    }
+
+    .parallax-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('ronaldo.jpg') no-repeat center center fixed;
+      background-size: cover;
+      transform: scale(1.1);
+      z-index: -2;
+      opacity: 0.3;
     }
 
     .overlay {
@@ -38,12 +50,10 @@
       width: 100%;
       background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
       backdrop-filter: blur(8px);
-      z-index: 0;
+      z-index: -1;
     }
 
     .container {
-      position: relative;
-      z-index: 1;
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.15);
       padding: 30px;
@@ -55,6 +65,8 @@
       width: 90%;
       max-width: 450px;
       transition: transform 0.3s ease;
+      position: relative;
+      z-index: 1;
     }
 
     .container:hover {
@@ -129,33 +141,6 @@
       outline: none;
     }
 
-    .audio-control {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      background: linear-gradient(135deg, #4facfe, #00f2fe);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
-      transition: all 0.3s ease;
-      z-index: 2;
-    }
-
-    .audio-control:hover, .audio-control:focus {
-      transform: scale(1.1);
-      box-shadow: 0 6px 20px rgba(0, 242, 254, 0.6);
-      outline: none;
-    }
-
-    .audio-control i {
-      font-size: 1.2rem;
-    }
-
     .bottom-text {
       margin-top: 20px;
       font-size: 1.8rem;
@@ -166,7 +151,6 @@
       text-shadow: 0 0 8px rgba(0, 242, 254, 0.3);
     }
 
-    /* Preloader */
     .loader {
       position: fixed;
       top: 0;
@@ -195,7 +179,6 @@
       animation: spin 1s linear infinite;
     }
 
-    /* Animations */
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
@@ -216,22 +199,6 @@
       50% { border-color: #00f2fe; }
     }
 
-    /* Parallax Effect */
-    body::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('ronaldo.jpg') no-repeat center center fixed;
-      background-size: cover;
-      transform: translateZ(-1px) scale(1.1);
-      z-index: -1;
-      opacity: 0.3;
-    }
-
-    /* Responsive Design */
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
       h2 { font-size: 1.3rem; }
@@ -239,8 +206,6 @@
       .bottom-text { font-size: 1.4rem; }
       .container { padding: 20px; }
       .btn { font-size: 0.85rem; padding: 8px 20px; }
-      .audio-control { width: 40px; height: 40px; }
-      .audio-control i { font-size: 1rem; }
     }
 
     @media (max-width: 400px) {
@@ -254,32 +219,25 @@
     <div class="spinner"></div>
   </div>
 
+  <!-- Background Layers -->
+  <div class="parallax-bg"></div>
   <div class="overlay"></div>
 
   <div class="container" role="main">
     <h1>Hello</h1>
     <h2>I'm Helanka Nipun</h2>
-    <p>Men are Brave</p>
+    <p>Fan of Cristiano Ronaldo,Vishvan</p>
     <a href="mailto:helanka.nipun.jayasundara@gmail.com" class="btn" aria-label="Get a quote by email">Get A Quote</a>
-    
+
     <!-- Social Media Links -->
     <div class="social-links" role="navigation" aria-label="Social media links">
-      <a href="https://x.com/Helanka_Nipun?t=gv7pvmimgJF4GbiWMVoIig&s=09" target="_blank" aria-label="X Profile"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://x.com/Helanka_Nipun?t=gv7pvmimgJF4GbiWMVoIig&s=09" target="_blank" rel="noopener noreferrer" aria-label="X Profile">
+        <i class="fab fa-x-twitter"></i>
+      </a>
     </div>
-    
+
     <div class="bottom-text">Siuuu 🐐</div>
   </div>
-
-  <!-- Audio Control -->
-  <button class="audio-control" aria-label="Toggle background music" onclick="toggleAudio()">
-    <i class="fas fa-pause"></i>
-  </button>
-
-  <!-- Music -->
-  <audio id="background-music" autoplay loop>
-    <source src="passo bem solto.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
 
   <script>
     // Preloader
@@ -290,38 +248,20 @@
       }, 800);
     });
 
-    // Audio Toggle
-    const audio = document.getElementById('background-music');
-    const audioControl = document.querySelector('.audio-control');
-    const audioIcon = audioControl.querySelector('i');
-    let isPlaying = true;
-
-    function toggleAudio() {
-      if (isPlaying) {
-        audio.pause();
-        audioIcon.classList.replace('fa-pause', 'fa-play');
-        isPlaying = false;
-      } else {
-        audio.play();
-        audioIcon.classList.replace('fa-play', 'fa-pause');
-        isPlaying = true;
-      }
-    }
-
-    // Keyboard Accessibility
-    document.querySelectorAll('.btn, .social-links a, .audio-control').forEach(element => {
-      element.addEventListener('keydown', (e) => {
+    // Keyboard accessibility
+    document.querySelectorAll('.btn, .social-links a').forEach(el => {
+      el.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          element.click();
+          el.click();
         }
       });
     });
 
-    // Parallax Effect (Simplified)
+    // Parallax scroll effect
     window.addEventListener('scroll', () => {
-      const bg = document.querySelector('body::before');
-      bg.style.transform = `translateY(${window.scrollY * 0.2}px)`;
+      const bg = document.querySelector('.parallax-bg');
+      bg.style.transform = `translateY(${window.scrollY * 0.2}px) scale(1.1)`;
     });
   </script>
 </body>
