@@ -6,7 +6,9 @@
   <title>Helanka Nipun</title>
 
   <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
+  <!-- Font Awesome for Social Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
   <style>
     * {
@@ -17,112 +19,310 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      /* Changed background to ronaldo.jpg */
       background: url('ronaldo.jpg') no-repeat center center fixed;
       background-size: cover;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       color: #ffffff;
       position: relative;
+      overflow: hidden;
     }
 
     .overlay {
       position: absolute;
       top: 0;
       left: 0;
-      height: 100vh;
+      height: 100%;
       width: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(5px);
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
+      backdrop-filter: blur(8px);
       z-index: 0;
     }
 
     .container {
       position: relative;
       z-index: 1;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 40px 30px;
-      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 30px;
+      border-radius: 15px;
       text-align: center;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-      animation: fadeIn 1.5s ease-in-out;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      animation: slideIn 1s ease-out;
       width: 90%;
-      max-width: 500px;
+      max-width: 450px;
+      transition: transform 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
     }
 
     h1 {
-      font-size: 2.8rem;
-      font-weight: 900;
-      background: linear-gradient(to right, #ff416c, #ff4b2b);
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #ff6b6b, #ff8e53);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 10px;
     }
 
     h2 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      background: linear-gradient(to right, #00c6ff, #0072ff);
+      font-size: 1.6rem;
+      font-weight: 500;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      animation: typing 2s steps(20), blink-caret 0.75s step-end infinite;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #00f2fe;
     }
 
     p {
-      font-size: 1.05rem;
-      color: #e0e0e0;
-      margin-bottom: 25px;
-      font-weight: 600;
+      font-size: 1rem;
+      color: #d1d1d1;
+      margin-bottom: 20px;
+      font-weight: 300;
+      letter-spacing: 0.5px;
     }
 
     .btn {
-      padding: 12px 30px;
-      background: linear-gradient(135deg, #ff416c, #ff4b2b);
+      padding: 10px 25px;
+      background: linear-gradient(135deg, #ff6b6b, #ff8e53);
       border: none;
       color: #fff;
-      border-radius: 30px;
-      font-weight: bold;
-      font-size: 1rem;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 0.95rem;
       cursor: pointer;
       text-decoration: none;
-      transition: transform 0.3s ease;
+      transition: all 0.3s ease;
+      display: inline-block;
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
     }
 
-    .btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #ff4b2b;
+    .btn:hover, .btn:focus {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+      outline: none;
+    }
+
+    .social-links {
+      margin: 15px 0;
+    }
+
+    .social-links a {
+      color: #ffffff;
+      font-size: 1.4rem;
+      margin: 0 12px;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover, .social-links a:focus {
+      color: #ff8e53;
+      transform: scale(1.3) rotate(5deg);
+      outline: none;
+    }
+
+    .audio-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
+      transition: all 0.3s ease;
+      z-index: 2;
+    }
+
+    .audio-control:hover, .audio-control:focus {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(0, 242, 254, 0.6);
+      outline: none;
+    }
+
+    .audio-control i {
+      font-size: 1.2rem;
     }
 
     .bottom-text {
-      margin-top: 30px;
-      font-size: 2rem;
-      font-weight: 800;
-      background: linear-gradient(to right, #00ff99, #00ffff);
+      margin-top: 20px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #00ff99, #00f2fe);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 5px rgba(0,0,0,0.3);
+      text-shadow: 0 0 8px rgba(0, 242, 254, 0.3);
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
+    /* Preloader */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #ff8e53;
+      border-top: 4px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    /* Animations */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: #00f2fe; }
+    }
+
+    /* Parallax Effect */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('ronaldo.jpg') no-repeat center center fixed;
+      background-size: cover;
+      transform: translateZ(-1px) scale(1.1);
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.3rem; }
+      p { font-size: 0.9rem; }
+      .bottom-text { font-size: 1.4rem; }
+      .container { padding: 20px; }
+      .btn { font-size: 0.85rem; padding: 8px 20px; }
+      .audio-control { width: 40px; height: 40px; }
+      .audio-control i { font-size: 1rem; }
+    }
+
+    @media (max-width: 400px) {
+      .social-links a { font-size: 1.2rem; margin: 0 8px; }
     }
   </style>
 </head>
 <body>
+  <!-- Preloader -->
+  <div class="loader">
+    <div class="spinner"></div>
+  </div>
+
   <div class="overlay"></div>
 
-  <div class="container">
+  <div class="container" role="main">
     <h1>Hello</h1>
     <h2>I'm Helanka Nipun</h2>
-    <p>Fan of Cristiano Ronaldo , Vishvan </p>
-    <a href="mailto helanka.nipun.electro@gmail.com" class="btn">Get A Quote</a>
+    <p>Men are Brave</p>
+    <a href="mailto:helanka.nipun.jayasundara@gmail.com" class="btn" aria-label="Get a quote by email">Get A Quote</a>
+    
+    <!-- Social Media Links -->
+    <div class="social-links" role="navigation" aria-label="Social media links">
+      <a href="https://x.com/Helanka_Nipun?t=gv7pvmimgJF4GbiWMVoIig&s=09" target="_blank" aria-label="X Profile"><i class="fab fa-x-twitter"></i></a>
+    </div>
+    
     <div class="bottom-text">Siuuu 🐐</div>
   </div>
 
+  <!-- Audio Control -->
+  <button class="audio-control" aria-label="Toggle background music" onclick="toggleAudio()">
+    <i class="fas fa-pause"></i>
+  </button>
+
+  <!-- Music -->
+  <audio id="background-music" autoplay loop>
+    <source src="passo bem solto.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    // Preloader
+    window.addEventListener('load', () => {
+      const loader = document.querySelector('.loader');
+      setTimeout(() => {
+        loader.classList.add('hidden');
+      }, 800);
+    });
+
+    // Audio Toggle
+    const audio = document.getElementById('background-music');
+    const audioControl = document.querySelector('.audio-control');
+    const audioIcon = audioControl.querySelector('i');
+    let isPlaying = true;
+
+    function toggleAudio() {
+      if (isPlaying) {
+        audio.pause();
+        audioIcon.classList.replace('fa-pause', 'fa-play');
+        isPlaying = false;
+      } else {
+        audio.play();
+        audioIcon.classList.replace('fa-play', 'fa-pause');
+        isPlaying = true;
+      }
+    }
+
+    // Keyboard Accessibility
+    document.querySelectorAll('.btn, .social-links a, .audio-control').forEach(element => {
+      element.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          element.click();
+        }
+      });
+    });
+
+    // Parallax Effect (Simplified)
+    window.addEventListener('scroll', () => {
+      const bg = document.querySelector('body::before');
+      bg.style.transform = `translateY(${window.scrollY * 0.2}px)`;
+    });
+  </script>
 </body>
 </html>
